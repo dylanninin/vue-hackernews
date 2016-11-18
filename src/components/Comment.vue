@@ -11,7 +11,10 @@
     </div>
     <div class="text" v-html="comment.text"></div>
     <ul class="comment-children" v-show="open">
+        <!--
+        TODO Recursive component RangeError: Maximum call stack size exceeded
         <comment v-for="id in comment.kids" :id="id"></comment>
+        -->
     </ul>
   </li>
 </template>

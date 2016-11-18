@@ -5,7 +5,6 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // Import route components
-import Hello from '../components/Hello'
 import ItemList from '../components/ItemList'
 import ItemView from '../views/ItemView'
 import UserView from '../views/UserView'
@@ -15,11 +14,11 @@ export default new Router({
   scrollBehavior: () => ({y: 0}),
   // Define routes
   routes: [
-    { path: '/top', component: ItemList },
-    { path: '/new', component: Hello },
-    { path: '/show', component: Hello },
-    { path: '/ask', component: Hello },
-    { path: '/job', component: Hello },
+    { path: '/top/:page(\\d+)?', component: ItemList },
+    { path: '/new/:page(\\d+)?', component: ItemList },
+    { path: '/show/:page(\\d+)?', component: ItemList },
+    { path: '/ask/:page(\\d+)?', component: ItemList },
+    { path: '/job/:page(\\d+)?', component: ItemList },
     { path: '/item/:id(\\d+)', component: ItemView },
     { path: '/user/:id', component: UserView },
     { path: '/', redirect: '/top' }
