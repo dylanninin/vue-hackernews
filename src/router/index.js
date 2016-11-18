@@ -8,6 +8,7 @@ Vue.use(Router)
 import Hello from '../components/Hello'
 import ItemList from '../components/ItemList'
 import ItemView from '../views/ItemView'
+import UserView from '../views/UserView'
 
 export default new Router({
   mode: 'history',
@@ -20,7 +21,7 @@ export default new Router({
     { path: '/ask', component: Hello },
     { path: '/job', component: Hello },
     { path: '/item/:id(\\d+)', component: ItemView },
-    { path: '/user', component: Hello },
+    { path: '/user/:id', component: UserView },
     { path: '/', redirect: '/top' }
   ]
 })
