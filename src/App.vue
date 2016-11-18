@@ -1,18 +1,30 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <div class="header">
+        <div class="inner">
+          <router-link to="/" exact>
+            <img class="logo" src="~public/logo-48.png" alt="logo" />
+          </router-link>
+          <router-link to="/top">Top</router-link>
+          <router-link to="/new">New</router-link>
+          <router-link to="/show">Show</router-link>
+          <router-link to="/ask">Ask</router-link>
+          <router-link to="/job">Job</router-link>
+          <a class="github" href="#" target="_blank">
+              Built with Vue.js
+          </a>
+        </div>
+        <transition name="fade" mode="out-in">
+          <router-view class="view"></router-view>
+        </transition>
+    </div>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
 
 export default {
-  name: 'app',
-  components: {
-    Hello
-  }
+  name: 'app'
 }
 </script>
 
