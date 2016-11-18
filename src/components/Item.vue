@@ -15,9 +15,9 @@
       <span v-if="item.type !== 'job'" class="By">
         by <router-link :to="'/user/' + item.by">{{ item.by }}</router-link>
       </span>
-      <span class="time">{{ time.time }} ago </span>
+      <span class="time">{{ item.time }} ago </span>
       <span v-if="item.type !== 'job'" class="comments-link">
-        | <router-link :to="'/item/' + item.id">{{ item.descendants }}</router-link>
+        | <router-link :to="'/item/' + item.id">{{ item.descendants }} comments </router-link>
       </span>
     </span>
     <span class="label" v-if="item.type !== 'story'">{{ item.type }}</span>

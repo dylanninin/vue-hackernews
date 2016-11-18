@@ -29,14 +29,18 @@ export default {
   },
 
   props: {
-    type: String
+    type: {
+      default: 'top',
+      type: String
+    }
   },
 
   data () {
+    const seed = require('../store/seed.json')
     return {
       transition: 'slide-left',
       displayedPage: 1,
-      displayedItems: []
+      displayedItems: Array.from({length: 30}, () => seed.story)
     }
   },
 
