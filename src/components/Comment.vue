@@ -2,7 +2,7 @@
   <li class="comment">
     <div class="by">
       <router-link :to="'/user/' + comment.by">{{ comment.by }}</router-link>
-      {{ comment.time }} ago
+      {{ comment.time | timeAgo }} ago
       <span v-if="comment.kids && comment.kids.length ">
         | <a class="expand" @click="open = !open">
           {{ (open ? 'collapase ' : 'expand ') + comment.kids.length + 'replies' }}
@@ -20,9 +20,12 @@
 </template>
 
 <script>
+import { timeAgo } from '../filters'
+
 export default {
   name: 'comment',
   props: ['id'],
+  filters: { timeAgo },
   data () {
     const seed = require('../store/seed.json')
     return {

@@ -11,7 +11,7 @@
             <p class="meta">
                 {{ item.score }} points
                 | by <router-link :to="'/user/' + item.by ">{{ item.by }}</router-link>
-                {{ item.time }} ago
+                {{ item.time | timeAgo }} ago
             </p>
         </div>
         <div class="item-view-comments">
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import { host } from '../filters'
+import { host, timeAgo } from '../filters'
 import Comment from '../components/Comment.vue'
 
 export default {
   name: 'item-view',
   components: { Comment },
-  filters: { host },
+  filters: { host, timeAgo },
   data () {
     const seed = require('../store/seed.json')
     return {
