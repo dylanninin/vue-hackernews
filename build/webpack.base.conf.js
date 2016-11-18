@@ -26,6 +26,9 @@ module.exports = {
       'vue$': 'vue/dist/vue',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
+      // Add public alias
+      // Reference https://vuejs-templates.github.io/webpack/static.html
+      'public': path.resolve(__dirname, '../public'),
       'components': path.resolve(__dirname, '../src/components')
     }
   },
