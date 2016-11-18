@@ -16,13 +16,21 @@
 </template>
 
 <script>
+function fetchUser (store) {
+  return store.dispatch('FETCH_USER', {
+    id: store.state.route.params.id
+  })
+}
+
 export default {
   name: 'user-view',
-  data () {
-    const seed = require('../store/seed.json')
-    return {
-      user: seed.user
+  computed: {
+    user () {
+      return this.$store.state.users[this.$route.params.id]
     }
+  },
+  beforeMount () {
+    fetchUser(this.$store)
   }
 }
 </script>
