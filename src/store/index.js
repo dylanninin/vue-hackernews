@@ -85,7 +85,7 @@ const store = new Vuex.Store({
     },
 
     activeItems (state, getters) {
-      return getters.activeIds.map(id => state.items[id].filter(_ => _))
+      return getters.activeIds.map(id => state.items[id]).filter(_ => _)
     }
   }
 })

@@ -33,7 +33,6 @@ export default {
   },
   computed: {
     comment () {
-      console.log(this.$store.state.items[this.id])
       return this.$store.state.items[this.id]
     }
   },

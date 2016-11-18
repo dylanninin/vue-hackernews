@@ -36,23 +36,44 @@ export default {
   },
 
   data () {
-    const seed = require('../store/seed.json')
     return {
       transition: 'slide-left',
       displayedPage: 1,
-      displayedItems: Array.from({length: 30}, () => seed.story)
+      displayedItems: this.$store.getters.activeItems
     }
   },
 
   computed: {
     page () {
-      return 1
+      return Number(this.$store.state.route.params.page) || 1
     },
     maxPage () {
-      return 10
+      const { itemsPerPage, lists } = this.$store.state
+      return Math.ceil(lists[this.type].length / itemsPerPage)
     },
     hasMore () {
       return this.page < this.maxPage
+    }
+  },
+
+  beforeMount () {
+    this.loadItems(this.page)
+  },
+
+  methods: {
+    loadItems (to = this.page, from = -1) {
+      this.$store.dispatch('FETCH_LIST', {
+        type: this.type
+      }).then(() => {
+        if (this.page < 0 || this.page > this.maxPage) {
+          this.$router.replace(`/${this.type}/1`)
+          return
+        }
+        this.transition = to > from ? 'slide-left' : 'slide-right'
+        this.displayedPage = to
+        this.displayedItems = this.$store.getters.activeItems
+        this.loading = false
+      })
     }
   }
 }
