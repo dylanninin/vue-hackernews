@@ -5,7 +5,7 @@
       {{ comment.time | timeAgo }} ago
       <span v-if="comment.kids && comment.kids.length ">
         | <a class="expand" @click="open = !open">
-          {{ (open ? 'collapase ' : 'expand ') + comment.kids.length + 'replies' }}
+          {{ (open ? 'collapase ' : 'expand ') + pluralize(comment.kids.length) }}
         </a>
       </span>
     </div>
@@ -31,6 +31,11 @@ export default {
     return {
       open: true,
       comment: seed.comment
+    }
+  },
+  methods: {
+    pluralize (n) {
+      return n + (n === 1 ? ' reply' : ' replies')
     }
   }
 }
