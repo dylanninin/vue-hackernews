@@ -30,7 +30,7 @@ export default {
 
   props: {
     type: {
-      default: 'top',
+      default: '',
       type: String
     }
   },
