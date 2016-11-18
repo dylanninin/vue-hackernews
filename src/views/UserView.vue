@@ -8,8 +8,7 @@
               <li v-if="user.about" v-html="user.about" class="about"></li>
           </ul>
           <p class="links">
-              <a :href="'https://news.ycombinator/submitted?id=' + user.id">submissions</a>
-              |
+              <a :href="'https://news.ycombinator/submitted?id=' + user.id">submissions</a> |
               <a :href="'https://news.ycombinator/threads?id=' + user.id">comments</a>
           </p>
         </template>
@@ -28,5 +27,23 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="stylus">
+.user-view
+  background-color #fff
+  box-sizing border-box
+  padding 2em 3em
+  h1
+    margin 0
+    font-size 1.5em
+  .meta
+    list-style-type none
+    padding 0
+  .label
+    display inline-block
+    min-width 4em
+  .about
+    margin 1em 0
+  .links a
+    color: #000
+    text-decoration underline
 </style>

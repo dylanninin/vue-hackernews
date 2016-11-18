@@ -9,7 +9,7 @@
           <router-link to="/new">New</router-link>
           <router-link to="/show">Show</router-link>
           <router-link to="/ask">Ask</router-link>
-          <router-link to="/job">Job</router-link>
+          <router-link to="/job">Jobs</router-link>
           <a class="github" href="#" target="_blank">
               Built with Vue.js
           </a>
