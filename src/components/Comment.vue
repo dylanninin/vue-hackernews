@@ -8,7 +8,7 @@
 // TODO Comment.vue
 export default {
   name: 'comment',
-  props: ["id"],
+  props: ['id'],
   data () {
     return {
 
