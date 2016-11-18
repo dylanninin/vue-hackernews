@@ -6,13 +6,14 @@ Vue.use(Router)
 
 // Import route components
 import Hello from '../components/Hello'
+import ItemList from '../components/ItemList'
 
 export default new Router({
   mode: 'history',
   scrollBehavior: () => ({y: 0}),
   // Define routes
   routes: [
-    { path: '/top', component: Hello },
+    { path: '/top', component: ItemList },
     { path: '/new', component: Hello },
     { path: '/show', component: Hello },
     { path: '/ask', component: Hello },
