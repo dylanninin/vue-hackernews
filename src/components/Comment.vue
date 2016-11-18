@@ -27,10 +27,14 @@ export default {
   props: ['id'],
   filters: { timeAgo },
   data () {
-    const seed = require('../store/seed.json')
     return {
-      open: true,
-      comment: seed.comment
+      open: true
+    }
+  },
+  computed: {
+    comment () {
+      console.log(this.$store.state.items[this.id])
+      return this.$store.state.items[this.id]
     }
   },
   methods: {

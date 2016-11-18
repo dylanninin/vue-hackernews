@@ -30,15 +30,40 @@
 import { host, timeAgo } from '../filters'
 import Comment from '../components/Comment.vue'
 
+function fetchItem (store) {
+  return store.dispatch('FETCH_ITEMS', {
+    ids: [store.state.route.params.id]
+  })
+}
+
+function fetchComments (store, item) {
+  if (item.kids) {
+    return store.dispatch('FETCH_ITEMS', {
+      ids: item.kids
+    }).then(() => Promise.all(item.kids.map(id => {
+      return fetchComments(store, store.state.items[id])
+    })))
+  }
+}
+
+function fetchItemAndComments (store) {
+  return fetchItem(store).then(() => {
+    const { items, route } = store.state
+    return fetchComments(store, items[route.params.id])
+  })
+}
+
 export default {
   name: 'item-view',
   components: { Comment },
   filters: { host, timeAgo },
-  data () {
-    const seed = require('../store/seed.json')
-    return {
-      item: seed.story
+  computed: {
+    item () {
+      return this.$store.state.items[this.$route.params.id]
     }
+  },
+  beforeMount () {
+    fetchItemAndComments(this.$store)
   }
 }
 </script>
