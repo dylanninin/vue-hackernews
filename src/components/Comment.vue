@@ -20,12 +20,9 @@
 </template>
 
 <script>
-import { timeAgo } from '../filters'
-
 export default {
   name: 'comment',
   props: ['id'],
-  filters: { timeAgo },
   data () {
     return {
       open: true

@@ -27,12 +27,9 @@
 </template>
 
 <script>
-import { host, timeAgo } from '../filters'
-
 export default {
   name: 'news-item',
-  props: ['item'],
-  filters: { host, timeAgo }
+  props: ['item']
 }
 </script>
 

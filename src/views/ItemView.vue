@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { host, timeAgo } from '../filters'
 import Comment from '../components/Comment.vue'
 
 function fetchItem (store) {
@@ -56,7 +55,6 @@ function fetchItemAndComments (store) {
 export default {
   name: 'item-view',
   components: { Comment },
-  filters: { host, timeAgo },
   computed: {
     item () {
       return this.$store.state.items[this.$route.params.id]
