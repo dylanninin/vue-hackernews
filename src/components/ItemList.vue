@@ -22,6 +22,7 @@
 <script>
 import Item from './Item.vue'
 import Spinner from './Spinner.vue'
+import { watchList } from '../store/api'
 
 export default {
   name: 'item-list',
@@ -61,6 +62,18 @@ export default {
 
   beforeMount () {
     this.loadItems(this.page)
+
+    // watch the current list for realtime updates
+    this.unwatchList = watchList(this.type, ids => {
+      this.$store.commit('SET_LIST', { type: this.type, ids })
+      this.$store.dispatch('ENSURE_ACTIVE_ITEMS').then(() => {
+        this.displayedItems = this.$store.getters.activeItems
+      })
+    })
+  },
+
+  beforeDestroy () {
+    this.unwatchList()
   },
 
   // https://vuejs.org/v2/api/#vm-watch

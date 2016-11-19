@@ -33,3 +33,20 @@ export function fetchItems (ids) {
 export function fetchUser (id) {
   return fetch(`user/${id}`)
 }
+
+export function watchList (type, cb) {
+  let first = true
+  const handler = snapshot => {
+    if (first) {
+      first = false
+    } else {
+      cb(snapshot.val())
+    }
+  }
+
+  const ref = api.child(`${type}stories`)
+  ref.on('value', handler)
+  return () => {
+    ref.off('value', handler)
+  }
+}
