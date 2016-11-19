@@ -5,7 +5,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // Import route components
-import { createListView } from '../views/createListView'
+import { createListView } from '../views/CreateListView'
 import ItemView from '../views/ItemView'
 import UserView from '../views/UserView'
 
