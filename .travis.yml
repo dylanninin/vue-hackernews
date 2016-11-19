@@ -26,6 +26,7 @@ script:
 after_script:
 - cd dist
 - echo "hn.dylanninin.com" > CNAME
+- cp index.html 404.html
 - git add --all .
 - git commit --message "Automatically update from travis-ci"
 - git push "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
