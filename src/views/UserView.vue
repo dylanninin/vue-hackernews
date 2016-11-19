@@ -52,6 +52,5 @@ export default {
   .about
     margin 1em 0
   .links a
-    color: #000
     text-decoration underline
 </style>

@@ -14,10 +14,10 @@
               Built with Vue.js
           </a>
         </div>
-        <transition name="fade" mode="out-in">
-          <router-view class="view"></router-view>
-        </transition>
     </div>
+    <transition name="fade" mode="out-in">
+      <router-view class="view"></router-view>
+    </transition>
   </div>
 </template>
 

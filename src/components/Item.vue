@@ -50,12 +50,6 @@ export default {
     width 80px
     text-align center
     margin-top -10px
-  .title
-    a
-      font-family Roboto, Helvetica, sans-serif
-      font-size 15px
-      color #000
-      text-decoration none
   .meta, .host
     font-size .85em
     color #999
