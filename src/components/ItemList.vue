@@ -60,6 +60,13 @@ export default {
     this.loadItems(this.page)
   },
 
+  // https://vuejs.org/v2/api/#vm-watch
+  watch: {
+    page (to, from) {
+      this.loadItems(to, from)
+    }
+  },
+
   methods: {
     loadItems (to = this.page, from = -1) {
       this.$store.dispatch('FETCH_LIST', {
