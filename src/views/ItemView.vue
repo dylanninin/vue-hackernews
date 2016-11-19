@@ -15,12 +15,12 @@
             </p>
         </div>
         <div class="item-view-comments">
-            <p class="item-view-comments-header">
-                {{ item.kids ? item.descendants + ' comments' : 'No comments yet.' }}
-            </p>
-            <ul class="comment-children">
-              <comment v-for="id in item.kids" :id="id"></comment>
-            </ul>
+          <p class="item-view-comments-header">
+              {{ item.kids ? item.descendants + ' comments' : 'No comments yet.' }}
+          </p>
+          <ul v-if="!loading" class="comment-children">
+            <comment v-for="id in item.kids" :id="id"></comment>
+          </ul>
         </div>
       </template>
     </div>
@@ -55,13 +55,20 @@ function fetchItemAndComments (store) {
 export default {
   name: 'item-view',
   components: { Comment },
+  data () {
+    return {
+      loading: true
+    }
+  },
   computed: {
     item () {
       return this.$store.state.items[this.$route.params.id]
     }
   },
   beforeMount () {
-    fetchItemAndComments(this.$store)
+    fetchItemAndComments(this.$store).then(() => {
+      this.loading = false
+    })
   }
 }
 </script>
