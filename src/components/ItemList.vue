@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="news-view">
+    <spinner :show="loading"></spinner>
     <div class="news-list-nav">
         <router-link v-if="page > 1" :to="'/' + type + '/' + (page - 1)">&lt; prev</router-link>
         <a v-else class="disabled">&lt; prev</a>
@@ -20,12 +21,13 @@
 
 <script>
 import Item from './Item.vue'
+import Spinner from './Spinner.vue'
 
 export default {
   name: 'item-list',
 
   components: {
-    Item
+    Item, Spinner
   },
 
   props: {
@@ -37,6 +39,7 @@ export default {
 
   data () {
     return {
+      loading: false,
       transition: 'slide-left',
       displayedPage: 1,
       displayedItems: this.$store.getters.activeItems
@@ -69,6 +72,7 @@ export default {
 
   methods: {
     loadItems (to = this.page, from = -1) {
+      this.loading = true
       this.$store.dispatch('FETCH_LIST', {
         type: this.type
       }).then(() => {

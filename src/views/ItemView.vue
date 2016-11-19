@@ -17,6 +17,7 @@
         <div class="item-view-comments">
           <p class="item-view-comments-header">
               {{ item.kids ? item.descendants + ' comments' : 'No comments yet.' }}
+              <spinner :show="loading"></spinner>
           </p>
           <ul v-if="!loading" class="comment-children">
             <comment v-for="id in item.kids" :id="id"></comment>
@@ -28,6 +29,7 @@
 
 <script>
 import Comment from '../components/Comment.vue'
+import Spinner from '../components/Spinner.vue'
 
 function fetchItem (store) {
   return store.dispatch('FETCH_ITEMS', {
@@ -54,7 +56,7 @@ function fetchItemAndComments (store) {
 
 export default {
   name: 'item-view',
-  components: { Comment },
+  components: { Comment, Spinner },
   data () {
     return {
       loading: true
