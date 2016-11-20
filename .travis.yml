@@ -1,37 +1,28 @@
 branches:
   only:
-    - master
-
+  - master
 language: node_js
-
 sudo: false
-
 node_js: stable
-
 cache:
   directories:
   - node_modules
-
 before_install:
 - git config --global user.name "Dylan"
 - git config --global user.email "dylanninin@gmail.com"
 - git clone --branch gh-pages https://github.com/dylanninin/vue-hackernews dist
-
 install:
 - npm install
-
 script:
-  - npm run build
-
+- npm run build
 after_script:
 - cd dist
 - echo "hn.dylanninin.com" > CNAME
 - cp index.html 404.html
 - git add --all .
 - git commit --message "Automatically update from travis-ci"
-- git push "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
-
+- git push "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages > /dev/null 2>&1
 env:
   global:
-    - GH_REF: github.com/dylanninin/vue-hackernews
-    - secure: "F8hiyh83r95BzpTTpkfwFPFws0O+kBPC7QjZolwg/Wn5hsh6Dt0cKg3kHC57c/nQOZtWmKF6rX9W5/eQexyCt0UYCvqBKax+ExnOeCPpmIx5PW6rBruZZ91dXqa2fKD3unz8o20WsaJd2EgXl9fN4pucShO5gwVFuU5vPcmcND4WJvTDp58S/8ie2D46nt8aUSCKJZ3nWPZYKVwSwb9SA0xvy+NqbAGdvyseRetkTCCe1EJbCzCIqgLexLpGc9QoVQ3A4QgxDQUMTFJ3u0pF8MDN4tr4iaJzSs0PZB7rl5CMhWtUvdYppfiGjii9IKs3z6uNcHC1QXLyeQeVkmEXhwpZ3+y6ZSp8tOv5xItlAatgWgI4g8fpYtV5UoQx8iO3Zknm2VpPGSDSflZvJFs48jZYo3cR+Fd6+5NQO1Ix9TLgUSfmpAZv04eCTPSpCFlUug+iQcGhcRh0c3MrhH6xMXrA7ChuSx1rzpvgkY3mTzreZ2A9ZrkoohVo0MfYtmE7YKVPeLLnt/K2OBFQLd+2KkI4i2j6Ds/N6SIdB0W9j73SXggNIMU0HAKGJ558T/S/rsqb1pQ5rXQZhR30YOh7MgxaKqIpnlDZ0OoovBqeChkkBWKsPMp5a7HKNZqlGCeh1wN8Z0jjmV56U11CJkImTLSS5inPobB14PtNAR2kd+4="
+  - GH_REF: github.com/dylanninin/vue-hackernews
+  - secure: nhjlJuXRsN6uqJNYfb/caJZrX0nSg2EIaxgDCY9d/2vPzV2hmeIObK0zrZ//lVb4QbOuDjMTpjzvh6AxUTSJnvZyVXgpHdVnaLmEQupsQX5F4VmFMSptmRfodHnCPZuB3tJHnm9IY7425vZ67SQYl/KGJDj+ahbqVekRr2mS+FaKUwnabBQLa1LqxPzt8LYYpmUU6vcHMnqqpOha9ZB+vGuwNmOVYRQkXRgViVj9/kdh1JozEF2CBqtsRf/q3M+h/xXgfMIPAxaEqJ5o0i32G4sACWi3C+4dgpBvFDU/H6hgIH0DSxfwiwoq2AWBLbxXieeGzCcCCaoPsGrYURAQfKw9iK83L/T7YVDQlZYVyrzswSbitStwL2re3YEiohfqIC4eOCx+aMNZHuyvQ/WcQ67xR39V3DwFaIcodOqkmOfEHaYZTluiMPxkhJfBtxOGh7kNkJxJJGOoDJ46uQ2cnrei9PGqHMjtxLRUVDkPkpZGU8mHS8+bhNKGXGrbwQHBmPSLN7iuuRaCi0ZG2ANJFD3zNXCWv0k5s0RgdDDRFIngqJZduNdZDrfzEF9LWL8+S3sD2ZfTSo4Yts3lT5CXLJEbYe6qh/L989FzTUshIf6cyud7or9uMTB86IcXw3iIq+EguBFFZZf/SYpD3enOk5MTTtkfF+dbpWOxhdL/cLE=
