@@ -56,7 +56,14 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
-    files: ['./index.js'],
+    files: [
+      // FIXME http://stackoverflow.com/questions/29391111/karma-phantomjs-and-es6-promises
+      // PhantomJS 2.1.1 (Mac OS X 0.0.0) ERROR
+      // Error: [vuex] vuex requires a Promise polyfill in this browser.
+      // at webpack:///~/vuex/dist/vuex.js:145:0 <- index.js:13956
+      '../../node_modules/babel-polyfill/dist/polyfill.js',
+      './index.js'
+    ],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
